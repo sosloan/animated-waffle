@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Authenticated,
   Unauthenticated,
@@ -176,7 +174,7 @@ function Content() {
               title="Stack articles"
               description="Learn about best practices, use cases, and more from a growing
             collection of articles, videos, and walkthroughs."
-              href="https://www.typescriptlang.org/docs/handbook/2/basic-types.html"
+              href="https://stack.convex.dev/"
             />
           </div>
           <div className="flex flex-col gap-2 w-1/2">
