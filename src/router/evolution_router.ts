@@ -58,11 +58,25 @@ export interface RouterResult {
   };
 }
 
+interface RegistryData {
+  version: string;
+  defaultRouting: {
+    topK: number;
+    explorationRate: number;
+    minConfidence: number;
+  };
+  agents: Record<string, AgentSpec>;
+}
+
+// ---------- Constants ----------
+
+const HASH_EXPLORATION_DIVISOR = 1000;
+
 // ---------- Helpers ----------
 
 function getAgents(): AgentSpec[] {
-  const agents = (registry as any).agents as Record<string, AgentSpec>;
-  return Object.values(agents);
+  const registryData = registry as RegistryData;
+  return Object.values(registryData.agents);
 }
 
 function normalizeScore(x: number): number {
@@ -110,12 +124,14 @@ function scoreAgent(ctx: RoutingContext, agent: AgentSpec) {
 
 // ---------- Bandit policy (UCB + epsilon mix) ----------
 
-export function initBanditState(explorationRate = (registry as any).defaultRouting.explorationRate): BanditState {
+export function initBanditState(explorationRate?: number): BanditState {
+  const registryData = registry as RegistryData;
+  const rate = explorationRate ?? registryData.defaultRouting.explorationRate;
   const arms: Record<string, BanditArmState> = {};
   for (const a of getAgents()) {
     arms[a.id] = { agentId: a.id, pulls: 0, meanReward: 0 };
   }
-  return { explorationRate, arms };
+  return { explorationRate: rate, arms };
 }
 
 function ucbScore(arm: BanditArmState, totalPulls: number) {
@@ -137,8 +153,10 @@ export function updateBandit(state: BanditState, agentId: string, reward: number
 export async function route(
   ctx: RoutingContext,
   bandit: BanditState,
-  topK = (registry as any).defaultRouting.topK
+  topK?: number
 ): Promise<RouterResult> {
+  const registryData = registry as RegistryData;
+  const k = topK ?? registryData.defaultRouting.topK;
   const agents = getAgents();
 
   // deterministic hash for "every 1 has 2 and every 2 has one"
@@ -171,8 +189,8 @@ export async function route(
   const chosen: AgentSpec[] = [];
   const used = new Set<string>();
 
-  for (let i = 0; i < topK; i++) {
-    const explore = (h % 1000) / 1000 < eps; // hash-driven but stable
+  for (let i = 0; i < k; i++) {
+    const explore = (h % HASH_EXPLORATION_DIVISOR) / HASH_EXPLORATION_DIVISOR < eps; // hash-driven but stable
     let pick: AgentSpec | null = null;
 
     if (explore) {
