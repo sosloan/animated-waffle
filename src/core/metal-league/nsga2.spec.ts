@@ -184,6 +184,31 @@ describe('nsga2 - crowding distance', () => {
 });
 
 describe('nsga2 - tournament selection', () => {
+  /**
+   * WHY THESE TESTS ARE PROBABILISTIC:
+   * 
+   * The tournamentSelect function implements binary tournament selection,
+   * which is a core NSGA-II algorithm component:
+   * 
+   * ```typescript
+   * export function tournamentSelect(population: Genome[]): Genome {
+   *   const a = population[Math.floor(Math.random() * population.length)];
+   *   const b = population[Math.floor(Math.random() * population.length)];
+   *   // ... compare and return winner
+   * }
+   * ```
+   * 
+   * The function is inherently probabilistic because:
+   * 1. It randomly picks 2 candidates from the population
+   * 2. With pop = [a, b], possible tournaments are: (a,a), (a,b), (b,a), (b,b)
+   * 3. When both picked candidates are the same (e.g., (a,a)), that one wins by default
+   * 4. This means 'b' can win ~50% of the time even though 'a' has better rank
+   * 
+   * Therefore, we test the statistical selection pressure (70%+ win rate) rather than
+   * expecting deterministic outcomes. This verifies the emergent evolutionary behavior
+   * that drives NSGA-II convergence.
+   */
+  
   it('should prefer lower rank', () => {
     const a = makeGenome('a', 10, 5);
     const b = makeGenome('b', 5, 10);

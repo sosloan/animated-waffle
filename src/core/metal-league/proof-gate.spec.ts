@@ -270,10 +270,11 @@ describe('proof-gate - validity checking', () => {
 describe('proof-gate - extreme pairs compliance', () => {
   it('should emit objective delta on verification', () => {
     const agent = createAgent('a1', 'tutor');
-    const beforeValues = [0.1, 100, 0.5, 0.5, 0.5, 5.0];
+    const beforeValues = [0.2, 100, 0.5, 0.5, 0.5, 5.0]; // meets min gain threshold
     const afterValues = [0.5, 50, 0.8, 0.9, 0.5, 5.0]; // improvement
     
     agent.objectives.values = beforeValues;
+    agent.perception.state = [{ re: 1, im: 0 }]; // stable state
     const result1 = verifyAgent(agent);
     
     agent.objectives.values = afterValues;
