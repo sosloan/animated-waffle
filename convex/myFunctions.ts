@@ -6,6 +6,13 @@ import { getAuthUserId } from "@convex-dev/auth/server";
 // Write your Convex functions in any file inside this directory (`convex`).
 // See https://docs.convex.dev/functions for more.
 
+// Constants for value validation
+const MIN_VALUE = 0;
+const MAX_VALUE = 99;
+const MIN_COUNT = 1;
+const MAX_COUNT = 100;
+const DEFAULT_COUNT = 10;
+
 // You can read data from the database via a query:
 export const listNumbers = query({
   // Enhanced validators for arguments with range validation.
@@ -19,9 +26,9 @@ export const listNumbers = query({
     //// See https://docs.convex.dev/database/reading-data.
     
     // Validate count is within acceptable range
-    const count = args.count ?? 10; // Default to 10
-    if (count < 1 || count > 100) {
-      throw new Error("Count must be between 1 and 100");
+    const count = args.count ?? DEFAULT_COUNT;
+    if (count < MIN_COUNT || count > MAX_COUNT) {
+      throw new Error(`Count must be between ${MIN_COUNT} and ${MAX_COUNT}`);
     }
     
     const numbers = await ctx.db
@@ -51,9 +58,9 @@ export const addNumber = mutation({
     //// Mutations can also read from the database like queries.
     //// See https://docs.convex.dev/database/writing-data.
 
-    // Validate the value is within acceptable range (0-99)
-    if (args.value < 0 || args.value > 99) {
-      throw new Error("Value must be between 0 and 99");
+    // Validate the value is within acceptable range
+    if (args.value < MIN_VALUE || args.value > MAX_VALUE) {
+      throw new Error(`Value must be between ${MIN_VALUE} and ${MAX_VALUE}`);
     }
 
     const id = await ctx.db.insert("numbers", { value: args.value });
@@ -149,8 +156,8 @@ export const processNumbers = action({
 
     // Validate all numbers are within range
     for (const num of args.numbers) {
-      if (num < 0 || num > 99) {
-        throw new Error("All numbers must be between 0 and 99");
+      if (num < MIN_VALUE || num > MAX_VALUE) {
+        throw new Error(`All numbers must be between ${MIN_VALUE} and ${MAX_VALUE}`);
       }
     }
 
@@ -169,12 +176,10 @@ export const processNumbers = action({
       case "min":
         result = Math.min(...args.numbers);
         break;
-      default:
-        throw new Error("Invalid operation");
     }
 
-    // Store the result (clamped to valid range 0-99)
-    const clampedResult = Math.max(0, Math.min(99, Math.floor(result)));
+    // Store the result (clamped to valid range)
+    const clampedResult = Math.max(MIN_VALUE, Math.min(MAX_VALUE, Math.floor(result)));
     await ctx.runMutation(api.myFunctions.addNumber, {
       value: clampedResult,
     });
@@ -183,6 +188,7 @@ export const processNumbers = action({
       operation: args.operation,
       input: args.numbers,
       result: result,
+      storedValue: clampedResult,
     };
   },
 });
