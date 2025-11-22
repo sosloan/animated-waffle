@@ -1,0 +1,507 @@
+{
+  "project": "Meta-Meta Agent League - Symphony of Knowing",
+  "description": "Self-evolving agent system with Pareto frontier evolution, Hilbert-space dynamics, spectral synchronization, and proof-carrying mutations. A polyphonic architecture where multiple data systems create harmony.",
+  "lastUpdated": "2025-11-22T05:47:00Z",
+  "status": {
+    "phase": "Foundation Complete - Ready for Polyphonic Integration",
+    "testsPassig": 198,
+    "commitHash": "b99d3df",
+    "demoWorking": true
+  },
+  
+  "completed": [
+    {
+      "id": "CORE-001",
+      "title": "Laws of Physics Package",
+      "description": "Mathematical core with formal objective vectors and Hilbert space dynamics",
+      "status": "✅ Complete",
+      "files": [
+        "src/core/laws-physics/objectives.ts",
+        "src/core/laws-physics/objectives.spec.ts",
+        "src/core/laws-physics/objectives.prop.ts",
+        "src/core/laws-physics/hilbert.ts",
+        "src/core/laws-physics/hilbert.spec.ts",
+        "src/core/laws-physics/hilbert.prop.ts"
+      ],
+      "features": [
+        "6-dimensional objective vectors (gain, latency, engagement, fairness, privacy, cost)",
+        "Hilbert state operations: norm, distance, inner product",
+        "Spectral synchronization for privacy-preserving coordination",
+        "Privacy projections with DP noise"
+      ],
+      "tests": "65 tests passing"
+    },
+    {
+      "id": "CORE-002",
+      "title": "NSGA-II Evolution Engine",
+      "description": "Multi-objective evolutionary algorithm with Pareto frontier selection",
+      "status": "✅ Complete",
+      "files": [
+        "src/core/metal-league/nsga2.ts",
+        "src/core/metal-league/nsga2.spec.ts",
+        "src/core/metal-league/nsga2.prop.ts"
+      ],
+      "features": [
+        "Fast non-dominated sorting (O(MN²))",
+        "Crowding distance for diversity maintenance",
+        "Tournament selection with probabilistic behavior",
+        "Detailed documentation of probabilistic test design"
+      ],
+      "tests": "51 tests passing",
+      "notes": "Probabilistic tournament selection tests verify statistical pressure (70%+) rather than deterministic outcomes"
+    },
+    {
+      "id": "CORE-003",
+      "title": "Tri-Layer Agent Runtime",
+      "description": "Complete agent organism with perception/reasoning/coordination",
+      "status": "✅ Complete",
+      "files": [
+        "src/core/agents-runtime/agent.ts",
+        "src/core/agents-runtime/agent.spec.ts",
+        "src/core/agents-runtime/agent.prop.ts"
+      ],
+      "features": [
+        "Perception layer: Hilbert state + uncertainty + provenance tracking",
+        "Reasoning layer: Symbolic knowledge base (facts/rules/plans)",
+        "Coordination layer: Tool registry, working memory, decision history, partner graph",
+        "6 agent kinds: student, tutor, curriculumDesigner, pedagogyTheorist, theoremProver, metaDesigner"
+      ],
+      "tests": "42 tests passing"
+    },
+    {
+      "id": "CORE-004",
+      "title": "Proof Gate System",
+      "description": "Verification and certification for proof-carrying evolution",
+      "status": "✅ Complete",
+      "files": [
+        "src/core/metal-league/proof-gate.ts",
+        "src/core/metal-league/proof-gate.spec.ts"
+      ],
+      "features": [
+        "Law enforcement (min gain, max latency/privacy/cost)",
+        "Stability checking via learning energy",
+        "Proof bundle generation with lineage tracking",
+        "Proof validity checking with expiration"
+      ],
+      "tests": "23 tests passing"
+    },
+    {
+      "id": "CORE-005",
+      "title": "Meta-League Evolution Loop",
+      "description": "The conductor orchestrating multi-generation evolution",
+      "status": "✅ Complete",
+      "files": [
+        "src/core/metal-league/evolution.ts",
+        "src/core/metal-league/evolution.spec.ts",
+        "src/core/metal-league/evolution.prop.ts"
+      ],
+      "features": [
+        "Multi-generation evolution with NSGA-II selection",
+        "Async evaluation pipeline with proof-gate filtering",
+        "Crossover via spectral synchronization (blending Hilbert states)",
+        "Mutation with state perturbation + knowledge evolution",
+        "Generation statistics tracking",
+        "Lineage preservation for reproducibility"
+      ],
+      "tests": "28 tests passing",
+      "notes": "evaluateAgent() is the integration hook for external data sources"
+    },
+    {
+      "id": "DEMO-001",
+      "title": "Demo Runner",
+      "description": "Executable symphony showing the system in action",
+      "status": "✅ Complete",
+      "files": [
+        "src/demo.ts",
+        "package.json (added npm run demo script)"
+      ],
+      "features": [
+        "Beautiful console output with generation-by-generation stats",
+        "Displays Pareto champions with full objective vectors",
+        "Shows proof certificates with verification details",
+        "Runs in ~27ms for 10 generations"
+      ],
+      "command": "npm run demo"
+    }
+  ],
+
+  "inProgress": [],
+
+  "backlog": [
+    {
+      "id": "INTEGRATE-001",
+      "title": "NASA Harmony/HOSS Integration",
+      "description": "Connect perception layer to NASA Earthdata for real-world observations",
+      "priority": "HIGH",
+      "effort": "Medium",
+      "metaphor": "The strings begin to feel real weather, not just simulated moods",
+      "tasks": [
+        "Create NASA Harmony API client",
+        "Implement OPeNDAP subsetter for gridded data",
+        "Add spatial/temporal/variable filtering",
+        "Transform NASA tiles to Hilbert state embeddings",
+        "Update evaluateAgent() to use real perception data",
+        "Add tests for NASA data pipeline"
+      ],
+      "integrationPoint": "evaluateAgent() in src/core/metal-league/evolution.ts",
+      "dependencies": [],
+      "estimatedTests": 15
+    },
+    {
+      "id": "INTEGRATE-002",
+      "title": "Alpaca Task Generation",
+      "description": "Generate instruction-following tasks for agent curriculum",
+      "priority": "HIGH",
+      "effort": "Medium",
+      "metaphor": "The woodwinds learn their scales from real musical notation",
+      "tasks": [
+        "Load Alpaca dataset (52k instruction pairs)",
+        "Create task sampling strategy",
+        "Add task difficulty estimation",
+        "Integrate into agent reasoning layer",
+        "Create task-to-objective mapping",
+        "Add curriculum progression logic"
+      ],
+      "integrationPoint": "evaluateAgent() and reasoning layer",
+      "dependencies": [],
+      "estimatedTests": 12
+    },
+    {
+      "id": "INTEGRATE-003",
+      "title": "TimescaleDB Metrics Storage",
+      "description": "Store evolution metrics as time-series for temporal analysis",
+      "priority": "HIGH",
+      "effort": "Medium",
+      "metaphor": "The rhythm section - capturing every beat, every measure",
+      "tasks": [
+        "Set up TimescaleDB connection",
+        "Define metrics schema (continuous aggregates)",
+        "Create rollup functions for generation stats",
+        "Add real-time metric ingestion",
+        "Implement regime detection on metric streams",
+        "Create dashboard queries",
+        "Add compression policies"
+      ],
+      "integrationPoint": "Generation stats in evolution loop",
+      "dependencies": [],
+      "estimatedTests": 18,
+      "schema": {
+        "tables": [
+          "agent_objectives (time, agent_id, objective_name, value)",
+          "generation_stats (time, generation, population_size, pareto_front_size, avg_objectives)",
+          "proof_events (time, agent_id, verified, checks)"
+        ],
+        "continuous_aggregates": [
+          "objective_rollups_1h (avg, min, max, stddev per objective)",
+          "regime_changes (detect transitions in objective space)"
+        ]
+      }
+    },
+    {
+      "id": "INTEGRATE-004",
+      "title": "Emotion Vector Integration",
+      "description": "Add affective states to Hilbert space dynamics",
+      "priority": "MEDIUM",
+      "effort": "Medium",
+      "metaphor": "The strings swell with joy, fall with fear - feeling, not just computing",
+      "tasks": [
+        "Extend Hilbert state with emotion dimensions",
+        "Define emotion basis vectors (joy, fear, anger, sadness, etc.)",
+        "Add emotion evolution dynamics",
+        "Integrate emotion in crossover (blend affective states)",
+        "Add emotion-objective coupling (how feelings affect performance)",
+        "Create emotion visualization"
+      ],
+      "integrationPoint": "crossoverAgents() and Hilbert state definition",
+      "dependencies": [],
+      "estimatedTests": 14,
+      "emotionDimensions": ["joy", "fear", "anger", "sadness", "trust", "disgust", "surprise", "anticipation"]
+    },
+    {
+      "id": "INTEGRATE-005",
+      "title": "ZeroMQ Messaging Layer",
+      "description": "Agent-to-agent communication via ZeroMQ patterns",
+      "priority": "MEDIUM",
+      "effort": "Large",
+      "metaphor": "The brass - architectural fanfares that shape how information flows",
+      "tasks": [
+        "Add ZeroMQ dependency",
+        "Implement PUB/SUB for broadcast messages",
+        "Implement REQ/REP for agent queries",
+        "Implement PUSH/PULL for work distribution",
+        "Add message serialization (protobuf or msgpack)",
+        "Create agent discovery protocol",
+        "Add coordination patterns (consensus, leader election)",
+        "Integrate with coordination layer",
+        "Add ZeroMQ monitoring"
+      ],
+      "integrationPoint": "coordination layer in agent runtime",
+      "dependencies": [],
+      "estimatedTests": 25,
+      "patterns": [
+        "PUB/SUB: Objective updates, proof broadcasts",
+        "REQ/REP: Agent queries, knowledge requests",
+        "PUSH/PULL: Task distribution, evaluation workload"
+      ]
+    },
+    {
+      "id": "INTEGRATE-006",
+      "title": "Narrative Synthesis (Shakespeare Layer)",
+      "description": "Transform evolution logs into human-readable stories",
+      "priority": "MEDIUM",
+      "effort": "Large",
+      "metaphor": "The voice - turning chaos into meaning, into something humans remember",
+      "tasks": [
+        "Define narrative arc structure (setup, conflict, resolution)",
+        "Create evolution event extractors",
+        "Implement narrative templates",
+        "Add LLM integration for story generation",
+        "Create narrative beats from generation stats",
+        "Add character development tracking (agent personas)",
+        "Generate act/scene structure",
+        "Export stories to markdown/JSON"
+      ],
+      "integrationPoint": "Evolution loop completion hook",
+      "dependencies": [],
+      "estimatedTests": 16,
+      "narrativeElements": [
+        "Characters: Pareto champions with personalities",
+        "Plot: Evolution struggle, proof gate trials",
+        "Setting: Objective space as the world",
+        "Conflict: Multi-objective tradeoffs",
+        "Resolution: Frontier convergence"
+      ]
+    },
+    {
+      "id": "INTEGRATE-007",
+      "title": "Trading Regime Detection",
+      "description": "Pattern detection in objective space to identify phase transitions",
+      "priority": "LOW",
+      "effort": "Medium",
+      "metaphor": "The percussion - finding patterns in noise, marking transitions",
+      "tasks": [
+        "Define regime states (exploration, exploitation, convergence, crisis)",
+        "Implement regime detection algorithms (HMM, change point detection)",
+        "Add objective space clustering",
+        "Create transition prediction",
+        "Integrate with TimescaleDB rollups",
+        "Add regime-aware mutation strategies",
+        "Create regime visualization"
+      ],
+      "integrationPoint": "Generation stats analysis",
+      "dependencies": ["INTEGRATE-003"],
+      "estimatedTests": 12
+    },
+    {
+      "id": "CONVEX-001",
+      "title": "Convex Schema for Agent Storage",
+      "description": "Persistent storage for agents and evolution history",
+      "priority": "HIGH",
+      "effort": "Medium",
+      "tasks": [
+        "Define Convex schema for agents table",
+        "Add evolution_runs table",
+        "Add generation_snapshots table",
+        "Implement agent CRUD operations",
+        "Add evolution replay functionality",
+        "Create queries for Pareto front retrieval",
+        "Add lineage traversal queries"
+      ],
+      "integrationPoint": "Evolution loop persistence",
+      "dependencies": [],
+      "estimatedTests": 20
+    },
+    {
+      "id": "UI-001",
+      "title": "Pareto Frontier Visualization UI",
+      "description": "Interactive cockpit for observing evolution in real-time",
+      "priority": "MEDIUM",
+      "effort": "Large",
+      "tasks": [
+        "Create React dashboard with live updates",
+        "Add 3D scatter plot for objective space",
+        "Implement Pareto front highlighting",
+        "Add agent detail panels",
+        "Create lineage graph visualization",
+        "Add generation timeline scrubber",
+        "Implement real-time metric streaming",
+        "Add proof certificate viewer",
+        "Create export functionality"
+      ],
+      "integrationPoint": "New React app consuming Convex data",
+      "dependencies": ["CONVEX-001"],
+      "estimatedTests": 30
+    },
+    {
+      "id": "META-001",
+      "title": "Meta-Meta-League: Agents Designing Agents",
+      "description": "Second-order evolution where agents evolve the evolution process",
+      "priority": "LOW",
+      "effort": "X-Large",
+      "metaphor": "The composer writing music about how to write music",
+      "tasks": [
+        "Define meta-agent interface (agents that modify objectives)",
+        "Implement meta-objective optimization",
+        "Add meta-proof gates (proofs about proof gates)",
+        "Create nested league hierarchy",
+        "Add objective weight evolution",
+        "Implement proof gate evolution",
+        "Add mutation strategy evolution",
+        "Create meta-curriculum (teaching agents to teach)"
+      ],
+      "integrationPoint": "New layer above evolution loop",
+      "dependencies": ["INTEGRATE-001", "INTEGRATE-002"],
+      "estimatedTests": 40
+    }
+  ],
+
+  "technicalDebt": [
+    {
+      "id": "DEBT-001",
+      "title": "Improve test coverage for edge cases",
+      "priority": "LOW",
+      "files": ["evolution.ts"],
+      "issue": "Some edge cases with empty populations not fully tested"
+    },
+    {
+      "id": "DEBT-002",
+      "title": "Add TypeScript strict mode",
+      "priority": "LOW",
+      "issue": "Currently using relaxed TypeScript config"
+    }
+  ],
+
+  "documentation": [
+    {
+      "id": "DOC-001",
+      "title": "Architecture Decision Records (ADRs)",
+      "priority": "MEDIUM",
+      "topics": [
+        "Why Pareto frontiers over single-objective optimization",
+        "Why Hilbert spaces for learning state representation",
+        "Why proof-carrying mutations over simple validation",
+        "Why NSGA-II over other multi-objective algorithms",
+        "Why extreme pairs TDD discipline"
+      ]
+    },
+    {
+      "id": "DOC-002",
+      "title": "Integration Guide",
+      "priority": "HIGH",
+      "content": [
+        "How to add new objectives",
+        "How to create custom evaluation functions",
+        "How to extend agent types",
+        "How to add custom proof gates",
+        "How to integrate external data sources"
+      ]
+    },
+    {
+      "id": "DOC-003",
+      "title": "Symphony Metaphor Documentation",
+      "priority": "LOW",
+      "content": "Detailed mapping of system components to musical metaphors for communication"
+    }
+  ],
+
+  "infrastructure": [
+    {
+      "id": "INFRA-001",
+      "title": "CI/CD Pipeline",
+      "priority": "HIGH",
+      "tasks": [
+        "GitHub Actions for test automation",
+        "Automated security scanning (CodeQL)",
+        "Performance benchmarking on PRs",
+        "Test coverage reporting",
+        "Deployment automation"
+      ]
+    },
+    {
+      "id": "INFRA-002",
+      "title": "Monitoring and Observability",
+      "priority": "MEDIUM",
+      "tasks": [
+        "Add structured logging",
+        "Implement tracing for evolution runs",
+        "Create alerting for proof gate failures",
+        "Add performance metrics",
+        "Create health check endpoints"
+      ]
+    }
+  ],
+
+  "research": [
+    {
+      "id": "RESEARCH-001",
+      "title": "Proof System Formalization",
+      "description": "Investigate Lean 4 or Coq integration for formal proofs",
+      "priority": "LOW"
+    },
+    {
+      "id": "RESEARCH-002",
+      "title": "Quantum-Inspired Evolution",
+      "description": "Explore quantum superposition concepts for agent state representation",
+      "priority": "LOW"
+    }
+  ],
+
+  "quickWins": [
+    {
+      "id": "QUICK-001",
+      "title": "Add more demo scenarios",
+      "effort": "Small",
+      "description": "Create demos for different agent types and objectives"
+    },
+    {
+      "id": "QUICK-002",
+      "title": "Export evolution results to JSON",
+      "effort": "Small",
+      "description": "Add result serialization for analysis"
+    },
+    {
+      "id": "QUICK-003",
+      "title": "Add configuration validation",
+      "effort": "Small",
+      "description": "Validate EvolutionConfig before running"
+    }
+  ],
+
+  "notes": [
+    "All foundation components complete with 198 tests passing",
+    "Demo successfully runs showing 10 generations in ~27ms",
+    "System follows extreme pairs TDD: every compute has spec + property tests",
+    "Proof gate currently lenient for testing - can be tightened for production",
+    "Integration points clearly defined for polyphonic architecture",
+    "Next session should start with INTEGRATE-001 (NASA) or INTEGRATE-003 (TimescaleDB)",
+    "Consider INTEGRATE-005 (ZeroMQ) for distributed agent communication",
+    "Meta-meta layer (META-001) is the ultimate goal but requires foundation pieces first"
+  ],
+
+  "keyFiles": {
+    "coreFoundation": [
+      "src/core/laws-physics/objectives.ts",
+      "src/core/laws-physics/hilbert.ts",
+      "src/core/metal-league/nsga2.ts",
+      "src/core/metal-league/proof-gate.ts",
+      "src/core/agents-runtime/agent.ts",
+      "src/core/metal-league/evolution.ts"
+    ],
+    "entryPoints": [
+      "src/demo.ts (runnable demo)",
+      "package.json (npm run demo)"
+    ],
+    "tests": [
+      "All .spec.ts files (specification tests)",
+      "All .prop.ts files (property-based tests)"
+    ]
+  },
+
+  "commands": {
+    "test": "npm test",
+    "testWatch": "npm run test:watch",
+    "demo": "npm run demo",
+    "build": "npm run build",
+    "lint": "npm run lint"
+  }
+}
