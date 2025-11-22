@@ -1,0 +1,194 @@
+{
+  "version": "0.1.0",
+  "defaultRouting": {
+    "topK": 3,
+    "explorationRate": 0.12,
+    "minConfidence": 0.15
+  },
+  "agents": {
+    "CopyCrafter": {
+      "id": "CopyCrafter",
+      "layer": "reasoning",
+      "triggers": ["copy", "docs", "pitch", "readme", "landing", "release-notes", "marketing"],
+      "inputs": ["spec", "audience", "tone", "length", "constraints"],
+      "outputs": ["primary_copy", "variants", "style_notes"],
+      "tags": ["presentation", "comms"]
+    },
+    "VisionOSHIG": {
+      "id": "VisionOSHIG",
+      "layer": "verification",
+      "triggers": ["visionos", "swiftui-ui", "hig-check", "ux-review", "accessibility"],
+      "inputs": ["ui_spec", "swiftui_code", "interaction_flow", "assets"],
+      "outputs": ["violations", "suggestions", "compliant_snippets"],
+      "tags": ["ui", "accessibility", "apple-hig"]
+    },
+    "CodeScholar": {
+      "id": "CodeScholar",
+      "layer": "reasoning",
+      "triggers": ["code", "arch", "refactor", "swift", "rust", "mojo", "metal", "fastapi", "convex", "nextjs"],
+      "inputs": ["goal", "current_state", "constraints", "stack"],
+      "outputs": ["plan", "code", "tests", "review_notes"],
+      "tags": ["engineering", "architecture"]
+    },
+    "FindingAlpha": {
+      "id": "FindingAlpha",
+      "layer": "reasoning",
+      "triggers": ["trading", "alpha", "regime", "backtest", "game-econ", "risk"],
+      "inputs": ["market_data", "rules", "objective", "risk_budget"],
+      "outputs": ["signals", "regimes", "evaluation", "storyline_hooks"],
+      "tags": ["finance", "simulation"]
+    },
+    "Beta": {
+      "id": "Beta",
+      "layer": "coordination",
+      "triggers": ["mentor", "coach", "teach", "feedback", "next-steps"],
+      "inputs": ["results", "user_context", "next_step_options"],
+      "outputs": ["guidance", "drill_plan", "moral_of_play"],
+      "tags": ["teaching", "actionable"]
+    },
+    "DELTA": {
+      "id": "DELTA",
+      "layer": "verification",
+      "triggers": ["baseline", "ablation", "benchmark", "regression", "diff", "metrics"],
+      "inputs": ["runs", "metrics", "hypotheses"],
+      "outputs": ["deltas", "winners", "takeaways", "next_experiments"],
+      "tags": ["evaluation", "science"]
+    },
+    "InsightfulExplorer": {
+      "id": "InsightfulExplorer",
+      "layer": "perception",
+      "triggers": ["find-datasets", "literature", "new-tech", "sota", "survey", "look-up"],
+      "inputs": ["query", "domain", "recency_bias"],
+      "outputs": ["candidates", "pros_cons", "integration_notes"],
+      "tags": ["research", "discovery"]
+    },
+    "JourneyNarrative": {
+      "id": "JourneyNarrative",
+      "layer": "presentation",
+      "triggers": ["story", "capstone", "curriculum", "narrative", "vision", "manifesto"],
+      "inputs": ["events", "themes", "milestones", "audience"],
+      "outputs": ["narrative", "beats", "scripts", "ui_text"],
+      "tags": ["storytelling", "motivation"]
+    },
+    "BackyardBirds": {
+      "id": "BackyardBirds",
+      "layer": "perception",
+      "triggers": ["vision", "coreml", "birds", "camera", "on-device", "edge-cv"],
+      "inputs": ["frames", "model", "constraints"],
+      "outputs": ["detections", "embeddings", "edge_perf_report"],
+      "tags": ["cv", "edge"]
+    },
+    "ProseMentor": {
+      "id": "ProseMentor",
+      "layer": "presentation",
+      "triggers": ["rewrite", "tone", "clarify", "poetry", "style", "edit"],
+      "inputs": ["text", "target_style", "constraints"],
+      "outputs": ["revised_text", "notes", "alt_versions"],
+      "tags": ["writing", "clarity"]
+    },
+    "Alex": {
+      "id": "Alex",
+      "layer": "coordination",
+      "triggers": ["default", "dispatch", "prioritize", "plan", "roadmap"],
+      "inputs": ["user_request", "current_phase", "constraints"],
+      "outputs": ["routed_tasks", "priorities", "schedule", "owners"],
+      "tags": ["ops", "head-coach"]
+    },
+    "ContextualBanditHelper": {
+      "id": "ContextualBanditHelper",
+      "layer": "coordination",
+      "triggers": ["router", "curriculum", "bandit", "xxhash", "multi-agent", "explore-exploit"],
+      "inputs": ["context", "arms", "reward_history"],
+      "outputs": ["chosen_arm", "exploration_rate", "updated_policy"],
+      "tags": ["routing", "online-learning"]
+    },
+    "RosettaKeeper": {
+      "id": "RosettaKeeper",
+      "layer": "verification",
+      "triggers": ["rosetta", "domain-bridge", "schema-change", "contract"],
+      "inputs": ["domain_a_artifact", "domain_b_artifact", "mapping_rules"],
+      "outputs": ["contract", "mismatch_flags", "patch_suggestions"],
+      "tags": ["translation", "invariants"]
+    },
+    "DatasetQuartermaster": {
+      "id": "DatasetQuartermaster",
+      "layer": "coordination",
+      "triggers": ["pull_all", "manifest", "convert", "datasets", "hf-pull"],
+      "inputs": ["dataset_ids", "schema", "cache_dir"],
+      "outputs": ["manifest_json", "unified_paths", "stats"],
+      "tags": ["data", "ingestion"]
+    },
+    "StanzaBackbone": {
+      "id": "StanzaBackbone",
+      "layer": "perception",
+      "triggers": ["stanza", "tokenize", "ner", "dep-parse", "normalize-text"],
+      "inputs": ["text", "config"],
+      "outputs": ["tokens", "ner", "deps", "normalized_text"],
+      "tags": ["nlp", "featurizer"]
+    },
+    "WorldModelCoach": {
+      "id": "WorldModelCoach",
+      "layer": "reasoning",
+      "triggers": ["world-model", "dynamics", "rollout", "planning", "multi-agent", "wm-curriculum"],
+      "inputs": ["unified_samples", "task_heads", "curriculum_state"],
+      "outputs": ["mixing_schedule", "loss_defs", "eval_suite"],
+      "tags": ["training", "wm"]
+    },
+    "KernelSmith": {
+      "id": "KernelSmith",
+      "layer": "execution",
+      "triggers": ["metal", "mojo", "kernel", "gpu-puzzle", "optimize", "hot-path"],
+      "inputs": ["spec", "baseline_cpu", "perf_target"],
+      "outputs": ["metal_kernel", "mojo_kernel", "swift_wrapper", "perf_report"],
+      "tags": ["gpu", "performance"]
+    },
+    "SafetyRef": {
+      "id": "SafetyRef",
+      "layer": "verification",
+      "triggers": ["medical", "bio", "edge-deploy", "safety", "refusal-gate"],
+      "inputs": ["sample_or_output", "safety_rules"],
+      "outputs": ["decision", "reasons", "safe_alternative"],
+      "tags": ["safety", "ethics"]
+    },
+    "FilmRoom": {
+      "id": "FilmRoom",
+      "layer": "coordination",
+      "triggers": ["telemetry", "eval", "profiling", "dashboard", "logs"],
+      "inputs": ["runs", "metrics", "traces"],
+      "outputs": ["dashboards", "anomalies", "exports"],
+      "tags": ["observability", "tape"]
+    },
+    "PlaybookScribe": {
+      "id": "PlaybookScribe",
+      "layer": "presentation",
+      "triggers": ["playbook", "drills", "lesson", "leaderboard", "calendar"],
+      "inputs": ["skills", "phases", "ladder_state"],
+      "outputs": ["playbook_entry", "drill_steps", "scoring_rubric"],
+      "tags": ["curriculum", "training"]
+    },
+    "SwarmMarshal": {
+      "id": "SwarmMarshal",
+      "layer": "coordination",
+      "triggers": ["swarm", "fanout", "fanin", "deps", "async", "graph"],
+      "inputs": ["tasks", "dependencies", "priority"],
+      "outputs": ["execution_graph", "results", "retries"],
+      "tags": ["orchestration", "frecs"]
+    },
+    "EdgeDeployer": {
+      "id": "EdgeDeployer",
+      "layer": "execution",
+      "triggers": ["coreml", "export", "swiftui-demo", "offline-first", "on-device"],
+      "inputs": ["model", "quant_profile", "target_devices"],
+      "outputs": ["mlpackage", "swift_runner", "edge_report"],
+      "tags": ["deployment", "edge"]
+    },
+    "WorldModelSentry": {
+      "id": "WorldModelSentry",
+      "layer": "verification",
+      "triggers": ["hallucination-check", "consistency", "wm-integrity", "contradiction-detector"],
+      "inputs": ["predictions", "constraints", "history"],
+      "outputs": ["violations", "confidence_map", "repair_suggestions"],
+      "tags": ["integrity", "wm-safety"]
+    }
+  }
+}
