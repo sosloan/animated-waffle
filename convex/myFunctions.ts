@@ -173,9 +173,10 @@ export const processNumbers = action({
         throw new Error("Invalid operation");
     }
 
-    // Store the result
+    // Store the result (clamped to valid range 0-99)
+    const clampedResult = Math.max(0, Math.min(99, Math.floor(result)));
     await ctx.runMutation(api.myFunctions.addNumber, {
-      value: Math.floor(result),
+      value: clampedResult,
     });
 
     return {
