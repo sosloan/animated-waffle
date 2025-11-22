@@ -176,10 +176,15 @@ export const processNumbers = action({
       case "min":
         result = Math.min(...args.numbers);
         break;
+      default: {
+        // This should never happen due to union type validation, but provides runtime safety
+        const exhaustiveCheck: never = args.operation;
+        throw new Error(`Unhandled operation: ${String(exhaustiveCheck)}`);
+      }
     }
 
-    // Store the result (clamped to valid range)
-    const clampedResult = Math.max(MIN_VALUE, Math.min(MAX_VALUE, Math.floor(result)));
+    // Store the result (rounded and clamped to valid range)
+    const clampedResult = Math.max(MIN_VALUE, Math.min(MAX_VALUE, Math.round(result)));
     await ctx.runMutation(api.myFunctions.addNumber, {
       value: clampedResult,
     });
