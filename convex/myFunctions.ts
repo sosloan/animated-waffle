@@ -183,8 +183,8 @@ export const processNumbers = action({
       }
     }
 
-    // Store the result (rounded and clamped to valid range)
-    const clampedResult = Math.max(MIN_VALUE, Math.min(MAX_VALUE, Math.round(result)));
+    // Store the result (floored and clamped to valid range)
+    const clampedResult = Math.max(MIN_VALUE, Math.min(MAX_VALUE, Math.floor(result)));
     await ctx.runMutation(api.myFunctions.addNumber, {
       value: clampedResult,
     });
