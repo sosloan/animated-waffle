@@ -111,9 +111,7 @@ function SignInForm() {
 
 function Content() {
   const { viewer, numbers } =
-    useQuery(api.myFunctions.listNumbers, {
-      count: 10,
-    }) ?? {};
+    useQuery(api.myFunctions.listNumbers, {}) ?? {};
   const addNumber = useMutation(api.myFunctions.addNumber);
 
   if (viewer === undefined || numbers === undefined) {
