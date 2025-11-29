@@ -51,6 +51,7 @@ export * from './equities';
 export * from './crypto';
 export * from './options';
 export * from './news';
+export * from './utils';
 
 // Import client creators
 import type { AlpacaConfig } from './types';

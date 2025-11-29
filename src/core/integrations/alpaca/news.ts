@@ -14,6 +14,7 @@ import type {
   TimeRangeParams,
   RequestOptions,
 } from './types';
+import { buildQueryString } from './utils';
 
 // ============================================================================
 // News-Specific Types
@@ -166,21 +167,6 @@ export interface NewsClient {
  * Default news data API base URL.
  */
 const DEFAULT_NEWS_BASE_URL = 'https://data.alpaca.markets';
-
-/**
- * Build query string from parameters.
- */
-function buildQueryString(params: Record<string, unknown>): string {
-  const entries = Object.entries(params)
-    .filter(([, v]) => v !== undefined && v !== null)
-    .map(([k, v]) => {
-      if (Array.isArray(v)) {
-        return [k, v.join(',')];
-      }
-      return [k, String(v)];
-    });
-  return new URLSearchParams(entries).toString();
-}
 
 /**
  * Transform snake_case API response to camelCase.
