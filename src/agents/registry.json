@@ -189,6 +189,14 @@
       "inputs": ["predictions", "constraints", "history"],
       "outputs": ["violations", "confidence_map", "repair_suggestions"],
       "tags": ["integrity", "wm-safety"]
+    },
+    "AlpacaMarkets": {
+      "id": "AlpacaMarkets",
+      "layer": "perception",
+      "triggers": ["alpaca", "market-data", "equities", "crypto", "options", "news", "stocks", "bars", "quotes", "trades", "ohlcv"],
+      "inputs": ["asset_type", "symbols", "data_type", "timeframe", "start", "end", "limit"],
+      "outputs": ["data", "nextPageToken", "metadata"],
+      "tags": ["finance", "market-data", "integration"]
     }
   }
 }
