@@ -210,7 +210,7 @@ export const getTraders = query({
     if (args.activeOnly) {
       return await ctx.db
         .query("traders")
-        .filter((q) => q.eq(q.field("state.isActive"), true))
+        .withIndex("by_active", (q) => q.eq("isActive", true))
         .collect();
     }
     return await ctx.db.query("traders").collect();
@@ -435,9 +435,9 @@ export const createTrader = mutation({
       name: args.name,
       strategy: args.strategy,
       symbols: args.symbols,
+      isActive: true, // Top-level field
       config: args.config,
       state: {
-        isActive: true,
         totalSignals: 0,
         performance: {
           successRate: 0,
@@ -473,10 +473,13 @@ export const updateTraderState = mutation({
       updatedAt: Date.now(),
     };
 
-    const newState = { ...trader.state };
+    // Update top-level isActive field
     if (args.isActive !== undefined) {
-      newState.isActive = args.isActive;
+      updates.isActive = args.isActive;
     }
+
+    // Update nested state
+    const newState = { ...trader.state };
     if (args.lastSignalAt !== undefined) {
       newState.lastSignalAt = args.lastSignalAt;
     }
@@ -660,7 +663,8 @@ export const generateMomentumSignal = mutation({
       ? olderBars.reduce((sum, b) => sum + b.close, 0) / olderBars.length 
       : recentAvg;
 
-    const momentum = (recentAvg - olderAvg) / olderAvg;
+    // Guard against division by zero
+    const momentum = olderAvg !== 0 ? (recentAvg - olderAvg) / olderAvg : 0;
     const latestPrice = recentBars[0].close;
 
     // Generate signal based on momentum

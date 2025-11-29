@@ -97,6 +97,7 @@ export default defineSchema({
     name: v.string(),
     strategy: v.string(),
     symbols: v.array(v.string()),
+    isActive: v.boolean(), // Top-level field for efficient indexing
     config: v.object({
       riskTolerance: v.number(), // 0-1
       maxPositionSize: v.number(),
@@ -105,7 +106,6 @@ export default defineSchema({
       cooldownMs: v.optional(v.number()), // Minimum time between trades
     }),
     state: v.object({
-      isActive: v.boolean(),
       lastSignalAt: v.optional(v.number()),
       totalSignals: v.number(),
       performance: v.object({
@@ -119,7 +119,7 @@ export default defineSchema({
   })
     .index("by_name", ["name"])
     .index("by_strategy", ["strategy"])
-    .index("by_active", ["state.isActive"]),
+    .index("by_active", ["isActive"]),
 
   /**
    * Data fetch jobs - track Alpaca API requests
